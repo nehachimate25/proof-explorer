@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About - Proof Explorer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-intro">
+      <h1>About</h1>
+      <p>
+        Mathematical Proof Verification and Proof Method Explorer, a Discrete
+        Mathematics project for B.Tech Information Technology.
+      </p>
+    </div>
+
+    <section>
+      <h2>Purpose</h2>
+      <p>
+        The project helps students understand mathematical reasoning. Instead of
+        only answering true or false, it shows each logical and algebraic step,
+        says why the step is valid, and is honest when it cannot verify
+        something.
+      </p>
+    </section>
+
+    <section>
+      <h2>What it covers</h2>
+      <ul>
+        <li><a href="logic.html">Logic</a>: truth tables, tautologies, equivalence</li>
+        <li><a href="propositions.html">Propositions</a>: logical form of a statement</li>
+        <li><a href="proof-explorer.html">Proof techniques</a>: direct, contrapositive and contradiction</li>
+        <li><a href="induction.html">Mathematical induction</a>: base case, hypothesis and step</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How it is built</h2>
+      <p>
+        The pages you are looking at are plain HTML, CSS and JavaScript. They
+        talk to a Flask backend written in Python using the browser’s
+        <code>fetch</code> function. All the mathematics (truth tables, algebra
+        checks, induction arithmetic with exact fractions) runs in that Python
+        engine, and saved proofs go into a SQLite database. Nothing is sent to
+        an outside service.
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+</body>
+</html>

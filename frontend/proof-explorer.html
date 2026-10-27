@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prove a statement - Proof Explorer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-intro">
+      <h1>Proof Explorer</h1>
+      <p>
+        Enter a statement you want to prove. The backend finds out which proof
+        methods fit it, then walks through the proof one step at a time. If a
+        method does not fit, it tells you why instead of forcing a proof.
+      </p>
+    </div>
+
+    <section>
+      <label for="statement">Statement</label>
+      <div class="input-with-button">
+        <input id="statement" type="text" autocomplete="off"
+               placeholder="If n is even, then n² is even.">
+        <button type="button" class="btn" id="btn-analyze">Analyze</button>
+      </div>
+      <p class="hint">Write it as a sentence, for example “If n is even, then n² is even.”</p>
+    </section>
+
+    <!-- results appear here -->
+    <div id="output" aria-live="polite"></div>
+
+    <!-- the example list is hidden while a result is showing -->
+    <section id="examples-section">
+      <h2>Or start from an example</h2>
+      <div id="examples"></div>
+    </section>
+
+    <section id="how-it-works">
+      <h2>How a proof is checked</h2>
+      <ol>
+        <li>Your statement is read and its logical form is found, such as P → Q.</li>
+        <li>The backend decides which methods suit that form: direct proof, contrapositive, contradiction or induction.</li>
+        <li>You choose a suitable method and step through the proof. Each step names the reason that makes it valid.</li>
+        <li>A proof is only labelled <em>Verified</em> when the backend has actually checked it.</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/views.js"></script>
+  <script src="js/proof-explorer.js"></script>
+</body>
+</html>

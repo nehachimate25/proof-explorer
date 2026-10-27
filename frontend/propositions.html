@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Propositions - Proof Explorer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-intro">
+      <h1>Propositions</h1>
+      <p>
+        A proposition is a statement that is either true or false. Split your
+        statement into its parts P and Q, choose how they are connected, and
+        the backend works out its logical form.
+      </p>
+    </div>
+
+    <section>
+      <h2>Describe your statement</h2>
+
+      <div class="field">
+        <label for="statement">Whole statement</label>
+        <input id="statement" type="text" value="If n is even, then n² is even.">
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="part-p">P</label>
+          <input id="part-p" type="text" value="n is even">
+        </div>
+        <div class="field">
+          <label for="part-q">Q</label>
+          <input id="part-q" type="text" value="n² is even">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="operator">How are they connected?</label>
+        <select id="operator">
+          <option value="→">→  implies (if P then Q)</option>
+          <option value="↔">↔  if and only if</option>
+          <option value="∧">∧  and</option>
+          <option value="∨">∨  or</option>
+          <option value="¬">¬  not (uses P only)</option>
+        </select>
+      </div>
+
+      <div class="button-row">
+        <button type="button" class="btn" id="btn-analyze">Analyze</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Or type a formula directly</h2>
+      <p class="soft">If you already have a formula such as (P ∧ Q) → R, the backend can classify that too.</p>
+      <div class="input-with-button">
+        <input id="raw-formula" class="math-input" type="text" placeholder="(P ∧ Q) → R"
+               autocomplete="off" spellcheck="false" aria-label="Formula">
+        <button type="button" class="btn btn-secondary" id="btn-formula">Analyze formula</button>
+      </div>
+    </section>
+
+    <div id="output" aria-live="polite"></div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/propositions.js"></script>
+</body>
+</html>

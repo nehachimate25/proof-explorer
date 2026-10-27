@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>History - Proof Explorer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-intro">
+      <h1>History</h1>
+      <p>
+        Proofs you saved from the Proof Explorer. They are stored in a small
+        SQLite database file on your computer, so they are still here the next
+        time you start the app.
+      </p>
+    </div>
+
+    <div id="message" aria-live="polite"></div>
+    <div id="history-list"></div>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/history.js"></script>
+</body>
+</html>

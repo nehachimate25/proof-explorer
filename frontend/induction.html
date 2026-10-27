@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Induction - Proof Explorer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-intro">
+      <h1>Induction</h1>
+      <p>
+        Mathematical induction proves that a statement holds for every whole
+        number from some starting value. It has three parts: a base case, an
+        inductive hypothesis, and an inductive step. The numbers are calculated
+        exactly, using fractions, never rounded decimals.
+      </p>
+    </div>
+
+    <section>
+      <label for="statement">Your own statement</label>
+      <div class="input-with-button">
+        <input id="statement" type="text" autocomplete="off" class="math-input"
+               placeholder="1 + 2 + ... + n = n(n+1)/2 for all n ≥ 1">
+        <button type="button" class="btn" id="btn-analyze">Analyze</button>
+      </div>
+      <p class="hint">If induction is not the right method for your statement, the backend says so and explains why.</p>
+    </section>
+
+    <section>
+      <h2>Or choose an example</h2>
+      <div id="examples"></div>
+    </section>
+
+    <section>
+      <div id="output" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/views.js"></script>
+  <script src="js/induction.js"></script>
+</body>
+</html>

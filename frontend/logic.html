@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logic - Proof Explorer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-intro">
+      <h1>Logic</h1>
+      <p>
+        Type a formula using letters such as P, Q and R. The backend tries every
+        combination of true and false, so each answer is exact, not a guess.
+      </p>
+    </div>
+
+    <!-- ===== One formula ===== -->
+    <section>
+      <h2>One formula</h2>
+
+      <div class="field">
+        <label for="formula">Formula</label>
+        <input id="formula" class="math-input" type="text" value="P → Q"
+               autocomplete="off" spellcheck="false">
+
+        <!-- the symbol buttons are added by logic.js -->
+        <div class="symbol-row" data-targets="formula" aria-label="Symbol buttons"></div>
+        <p class="hint">You can also type these on the keyboard: ! for ¬, &amp; for ∧, | for ∨, -&gt; for →, &lt;-&gt; for ↔</p>
+
+        <div class="example-row">
+          <span class="soft">Examples:</span>
+          <button type="button" class="link-button" data-example="P → Q">P → Q</button>
+          <button type="button" class="link-button" data-example="¬P ∨ Q">¬P ∨ Q</button>
+          <button type="button" class="link-button" data-example="P ∧ ¬P">P ∧ ¬P</button>
+          <button type="button" class="link-button" data-example="P ∨ ¬P">P ∨ ¬P</button>
+          <button type="button" class="link-button" data-example="¬(P ∧ Q) ↔ (¬P ∨ ¬Q)">¬(P ∧ Q) ↔ (¬P ∨ ¬Q)</button>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button type="button" class="btn" id="btn-table">Make truth table</button>
+        <button type="button" class="btn btn-secondary" id="btn-classify">Tautology or contradiction?</button>
+        <button type="button" class="btn btn-secondary" id="btn-variants">Converse, inverse, contrapositive</button>
+      </div>
+
+      <div id="one-output" aria-live="polite"></div>
+    </section>
+
+    <!-- ===== Two formulas ===== -->
+    <section>
+      <h2>Two formulas</h2>
+      <p>
+        Two formulas are <strong>logically equivalent</strong> when they are true
+        and false in exactly the same rows of the truth table.
+      </p>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="formula-a">First formula</label>
+          <input id="formula-a" class="math-input" type="text" value="P → Q"
+                 autocomplete="off" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="formula-b">Second formula</label>
+          <input id="formula-b" class="math-input" type="text" value="¬Q → ¬P"
+                 autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+      <div class="symbol-row" data-targets="formula-a formula-b" aria-label="Symbol buttons"></div>
+
+      <div class="button-row">
+        <button type="button" class="btn" id="btn-compare">Are they equivalent?</button>
+      </div>
+
+      <div id="compare-output" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/views.js"></script>
+  <script src="js/logic.js"></script>
+</body>
+</html>

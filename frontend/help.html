@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Help - Proof Explorer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-intro">
+      <h1>Help</h1>
+      <p>Short answers to the questions that come up most when you are starting with proofs.</p>
+    </div>
+
+    <section>
+      <h2>Questions</h2>
+
+      <details>
+        <summary>What is a proposition?</summary>
+        <p>A statement that is either true or false, but not both. For example, “n is even” is a proposition once we know which n we mean.</p>
+      </details>
+      <details>
+        <summary>What is an implication?</summary>
+        <p>The statement P → Q means “if P is true, then Q is true”. It is false in only one case: when P is true and Q is false.</p>
+      </details>
+      <details>
+        <summary>What is a direct proof?</summary>
+        <p>You assume P, use definitions and algebra, and arrive at Q.</p>
+      </details>
+      <details>
+        <summary>What is a proof by contradiction?</summary>
+        <p>You assume the statement is false and follow the consequences until something impossible appears. Since the assumption leads to nonsense, the statement must be true.</p>
+      </details>
+      <details>
+        <summary>What is the contrapositive?</summary>
+        <p>The contrapositive of P → Q is ¬Q → ¬P. It is logically equivalent to the original, so proving one proves the other. It is not the same as the converse, Q → P, which can be false even when P → Q is true. You can check this on the <a href="logic.html">Logic page</a>.</p>
+      </details>
+      <details>
+        <summary>What is mathematical induction?</summary>
+        <p>A way to prove that a statement P(n) is true for every n from some starting value. You prove a base case and then prove that P(k) leads to P(k+1).</p>
+      </details>
+      <details>
+        <summary>What is a base case?</summary>
+        <p>The smallest value of n, checked directly to confirm the statement is true there.</p>
+      </details>
+      <details>
+        <summary>What is an inductive hypothesis?</summary>
+        <p>The assumption that the statement is true for n = k. It is only used inside the inductive step. It is not a proof on its own.</p>
+      </details>
+      <details>
+        <summary>What is an inductive step?</summary>
+        <p>The argument that if the statement is true for n = k, then it is also true for n = k + 1.</p>
+      </details>
+    </section>
+
+    <section>
+      <h2>Typing formulas</h2>
+      <p>On the Logic and Propositions pages you can use the symbol buttons or type with your keyboard. Both work. Use brackets whenever you are unsure how a formula will be grouped.</p>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Symbol</th><th>Meaning</th><th>Keyboard</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="math">¬</td><td>not</td><td><code>!</code> or <code>~</code></td></tr>
+            <tr><td class="math">∧</td><td>and</td><td><code>&amp;</code> or <code>&amp;&amp;</code></td></tr>
+            <tr><td class="math">∨</td><td>or</td><td><code>|</code> or <code>||</code></td></tr>
+            <tr><td class="math">→</td><td>implies</td><td><code>-&gt;</code></td></tr>
+            <tr><td class="math">↔</td><td>if and only if</td><td><code>&lt;-&gt;</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="soft">A formula can use up to six different letters, such as P, Q and R.</p>
+    </section>
+
+    <section>
+      <h2>What the result labels mean</h2>
+      <ul>
+        <li><span class="status status-good">Verified</span> The backend checked every step of the proof.</li>
+        <li><span class="status status-info">Supported</span> The statement is recognised and explained, but a full proof is not generated.</li>
+        <li><span class="status status-review">Needs review</span> The statement is only partly understood, so the backend does not claim a result.</li>
+        <li><span class="status status-bad">Invalid</span> The input is empty, badly formed, or not a mathematical statement.</li>
+        <li><span class="status status-bad">Disproved</span> The statement is false. A counterexample is shown.</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+</body>
+</html>

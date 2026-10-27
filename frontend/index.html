@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Proof Explorer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="site-header" id="site-header"></header>
+
+  <main>
+    <div class="page-intro">
+      <h1>Proof Explorer</h1>
+      <p>
+        A small lab for Discrete Mathematics. Type a statement and see which
+        proof methods suit it, then read the proof one step at a time. Every
+        result is checked by the Python backend, not guessed.
+      </p>
+    </div>
+
+    <section>
+      <h2>The kind of proof you will see</h2>
+      <div class="example-proof">
+        <p><strong>Claim.</strong> If n is even, then n² is even.</p>
+        <ol>
+          <li>Assume n is even.</li>
+          <li>Then n = 2k for some integer k.</li>
+          <li>So n² = (2k)² = 4k² = 2(2k²).</li>
+          <li>2k² is an integer, so n² is even.</li>
+        </ol>
+      </div>
+      <p>
+        <a href="proof-explorer.html?statement=If%20n%20is%20even%2C%20then%20n%C2%B2%20is%20even.">Open this statement in the Proof Explorer</a>
+        to step through it with the reason for each line.
+      </p>
+    </section>
+
+    <section>
+      <h2>Where to go</h2>
+      <ul class="section-list">
+        <li><a href="logic.html">Logic</a><span>Build truth tables, test for tautologies, compare two formulas.</span></li>
+        <li><a href="propositions.html">Propositions</a><span>Split a statement into P and Q and find its logical form.</span></li>
+        <li><a href="proof-explorer.html">Proof Explorer</a><span>Enter a statement, pick a proof method, and step through the proof.</span></li>
+        <li><a href="induction.html">Induction</a><span>See the base case, hypothesis and inductive step worked out exactly.</span></li>
+        <li><a href="history.html">History</a><span>Proofs you have saved.</span></li>
+        <li><a href="help.html">Help</a><span>Short explanations of the terms, and how to type formulas.</span></li>
+        <li><a href="about.html">About</a><span>What the project is for and how it is built.</span></li>
+      </ul>
+      <p class="soft">New to proofs? Read <a href="help.html">Help</a> first.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="site-footer"></footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/common.js"></script>
+</body>
+</html>
