@@ -6,26 +6,28 @@ Information Technology project. It covers four syllabus areas —
 explains *how* a statement is verified step by step rather than only
 returning TRUE/FALSE.
 
-## Why this is trustworthy
+# Why this is trustworthy
 
 Mathematical correctness comes from a **deterministic verification engine**,
 not from an AI model:
 
-- **Logic** — a real recursive-descent parser evaluates every possible truth
-  assignment (2ⁿ rows) to build truth tables and decide tautology /
-  contradiction / equivalence. No guessing.
-- **Proofs** — direct, contrapositive, and contradiction proofs come from a
-  verified proof library *and* a dynamic rule-based pattern analyzer
-  (`backend/analyzers/`). Any statement matching a recognized pattern
-  (parity, divisibility, sums, irrationality, induction) gets a genuine,
-  hand-verified algebraic proof — not just statements that are byte-for-byte
-  in a static library. The system will refuse to run an unsuitable method
-  (e.g. direct proof for "√2 is irrational") and explains why.
-- **Induction** — base cases and inductive steps are checked with Python's
-  exact `Fraction` arithmetic, not narration or floating point. Recognized
-  dynamically from flexible phrasing (not just exact example-ID lookups).
-- If a statement isn't recognized by any pattern, the app says so plainly
-  (NEEDS_REVIEW / INVALID) instead of fabricating a proof.
+### 🧠 Logic
+- Uses a recursive-descent parser to check all possible truth-value combinations and generate truth tables.
+- Identifies whether a statement is a **tautology, contradiction, or logically equivalent** to another statement.
+
+### 📘 Proofs
+- Supports direct, contrapositive, and contradiction proofs.
+- Uses a verified proof library and rule-based pattern analysis to generate algebraic proofs for recognized statements about parity, divisibility, sums, irrational numbers, and more.
+- Checks whether a proof method is suitable for the given statement and explains when it is not.
+- Does not rely only on predefined examples; it can recognize different ways of writing supported statements.
+
+### 🔢 Mathematical Induction
+- Checks base cases and inductive steps using Python's exact `Fraction` arithmetic.
+- Recognizes supported induction statements written in different ways.
+- Avoids floating-point calculation errors when checking exact fractions.
+
+### ✅ Reliable Results
+- If a statement is not recognized or cannot be verified, the system clearly marks it as `NEEDS_REVIEW` or `INVALID` instead of generating a fake proof.
 
 No paid API is required anywhere in this project.
 
@@ -34,53 +36,76 @@ No paid API is required anywhere in this project.
 Every analysis returns one of four honest support levels:
 
 | Level | Meaning |
-|---|---|
-| `VERIFIED` | Deterministic rule/proof template; every step has been checked. |
-| `SUPPORTED` | Pattern recognized, structured explanation given, but full formal proof isn't auto-generated. |
-| `NEEDS_REVIEW` | Partially understood; the engine can't safely complete it. |
-| `INVALID` | Empty, malformed, or not a mathematical statement. |
 
-The static example libraries (`proof_engine/library.py`,
-`induction/library.py`) are an **optimization / verified-reference
-shortcut** — an exact match there is a fast path to a known-good proof.
-They are **not** a gatekeeper: any statement, matched or not, is routed
-through the dynamic analyzer in `backend/analyzers/` for pattern-based
-verification. A statement is never rejected just because it isn't in a
-library.
+|---|---|
+| `VERIFIED` | The proof follows verified rules, and every step is checked. |
+| `SUPPORTED` | The system recognizes the pattern and provides an explanation, but does not generate a complete formal proof. |
+| `NEEDS_REVIEW` | The system understands part of the statement but cannot safely complete the analysis. |
+| `INVALID` | The input is empty, incorrectly formatted, or not a valid mathematical statement. |
+
+📚 Static Libraries and Dynamic Analysis
+
+- Static libraries contain predefined examples and verified proofs that can be reused quickly.
+- They help the system find known solutions faster.
+- The dynamic analyzer in `backend/analyzers/` checks statements using recognized mathematical patterns.
+- Statements do not need to exist in the static libraries to be analyzed.
+- If the system cannot safely verify a statement, it reports the limitation instead of making up a proof.
 
 ## Project structure
+## 📁 Project Structure
 
-```
+```text
 proof-explorer/
-├── run.py             Starts everything: the backend API and the web pages
-├── check_app.py       Quick self-test (python check_app.py)
-├── frontend/          Plain HTML, CSS and JavaScript (no build step)
-│   ├── index.html, logic.html, propositions.html, proof-explorer.html,
-│   │   induction.html, history.html, help.html, about.html
-│   ├── css/style.css      All styling, in one file
+├── run.py                  # Starts the backend and web pages
+├── check_app.py            # Checks whether the app is working
+├── frontend/               # Website built with HTML, CSS and JavaScript
+│   ├── index.html          # Home page
+│   ├── logic.html           # Logic and truth tables
+│   ├── propositions.html    # Propositional logic
+│   ├── proof-explorer.html  # Mathematical proofs
+│   ├── induction.html       # Mathematical induction
+│   ├── history.html         # Previous results
+│   ├── help.html            # Help page
+│   ├── about.html           # About the project
+│   ├── css/
+│   │   └── style.css        # Website design and styling
 │   └── js/
-│       ├── api.js            Every request to the backend (uses fetch)
-│       ├── common.js         Navigation, loading and error helpers
-│       ├── views.js          Truth tables and induction results (shared)
-│       └── logic.js, propositions.js, proof-explorer.js,
-│           induction.js, history.js   One script per page
-├── backend/           Flask + SQLite (unchanged)
-│   ├── app.py
-│   ├── routes/            logic, proposition, proof, induction, history
-│   ├── logic/              parser.py, truth_table.py, evaluator.py
-│   ├── analyzers/          statement_analyzer.py (master dispatcher), normalizer.py,
-│   │                       conditional_analyzer.py, parity_analyzer.py,
-│   │                       divisibility_analyzer.py, induction_analyzer.py,
-│   │                       irrationality_analyzer.py, logic_analyzer.py
-│   ├── proof_engine/       library.py, direct.py, contrapositive.py, contradiction.py,
-│   │                       validator.py, dynamic_proof.py
-│   ├── induction/           library.py, base_case.py, hypothesis.py, inductive_step.py,
-│   │                        pipeline.py
-│   ├── validators/         statement_classifier.py (merged library + dynamic routing)
-│   ├── models/              history.py
-│   └── database/            db.py (SQLite)
-└── README.md
+│       ├── api.js           # Connects the frontend to the backend
+│       ├── common.js        # Shared navigation and error handling
+│       ├── views.js         # Displays tables and results
+│       ├── logic.js         # Logic page functionality
+│       ├── propositions.js  # Propositions page functionality
+│       ├── proof-explorer.js # Proof page functionality
+│       ├── induction.js     # Induction page functionality
+│       └── history.js       # History page functionality
+├── backend/                 # Flask backend and SQLite database
+│   ├── app.py               # Creates the backend application
+│   ├── routes/               # Handles API requests for each feature
+│   ├── logic/                # Parses and evaluates logical expressions
+│   ├── analyzers/            # Recognizes and analyzes mathematical patterns
+│   ├── proof_engine/         # Generates and validates mathematical proofs
+│   ├── induction/            # Handles induction proof steps
+│   ├── validators/           # Checks and classifies input statements
+│   ├── models/               # Defines data models
+│   └── database/             # Manages SQLite database operations
+└── README.md                 # Project documentation
 ```
+
+### 🛠️ Technologies Used
+
+- **Frontend:** HTML, CSS and JavaScript
+- **Backend:** Python and Flask
+- **Database:** SQLite
+- **Communication:** Fetch API for sending requests between the frontend and backend
+
+### 🔄 How It Works
+
+1. The user enters a mathematical statement on the website.
+2. JavaScript sends the input to the Flask backend using the Fetch API.
+3. The backend analyzes the statement using logic parsers, mathematical analyzers, or proof engines.
+4. The backend returns the result to the frontend.
+5. JavaScript displays the truth table, proof, induction steps, or analysis status on the webpage.
+6. SQLite stores relevant history for later viewing.
 
 ## How to run it (Windows + VS Code)
 
@@ -162,26 +187,28 @@ Vite, `@vitejs/plugin-react`, Tailwind CSS, PostCSS, Autoprefixer,
 
 ## Using the app
 
-1. **Home** — an example proof and links to every section.
-2. **Logic** — build an expression with P, Q, ¬ ∧ ∨ → ↔, generate its truth
-   table, check tautology/contradiction, compare two expressions for
-   logical equivalence, evaluate one row, or see the converse, inverse and
-   contrapositive of an implication.
-3. **Propositions** — enter a statement's P, Q and connecting operator to see
-   its logical form and classification (conditional, biconditional, etc.).
-4. **Proof Explorer** — the central module. Enter a statement (or pick one
-   from the verified library), see which proof methods are mathematically
-   suitable, and step through the chosen proof one step at a time — each
-   step explains *what happened* and *why it's valid*. Compare methods
-   side by side, then save the result to History.
-5. **Induction** — type your own statement or pick an example, and watch the Base Case get computed
-   exactly, the Inductive Hypothesis stated (clearly labeled as an
-   assumption, not a proof), and the Inductive Step verified both
-   symbolically and with numeric spot-checks (you can also test your own k).
-6. **History** — everything you've saved from the Proof Explorer, stored in
-   SQLite, with delete support.
-7. **Help / About** — beginner-friendly explanations of every concept, and
-   the project's purpose and architecture.
+
+1. **Home** — Shows an example proof and links to all sections of the website.
+
+2. **Logic** — Create logical expressions using symbols like `P`, `Q`, `¬`, `∧`, `∨`, `→`, and `↔`.
+ Generate truth tables, check tautologies and contradictions, compare expressions, evaluate individual rows, 
+ and find the converse, inverse, and contrapositive of an implication.
+
+3. **Propositions** — Enter statements and logical operators to understand their logical structure and
+ identify types such as conditional and biconditional statements.
+
+4. **Proof Explorer** — Explore mathematical proofs using different methods, including direct proof,
+ contrapositive, and contradiction. Follow each proof step by step, understand why each step is valid,
+  compare suitable methods, and save results to History.
+
+5. **Induction** — Enter a mathematical statement or choose an example. Check the base case, understand the inductive hypothesis, 
+and verify the inductive step using symbolic calculations and numerical checks.
+
+6. **History** — View and delete previously saved proof results stored in the SQLite database.
+
+7. **Help & About** — Learn mathematical concepts through beginner-friendly explanations and 
+understand the project's purpose and architecture.
+
 
 ## Verified example library
 
